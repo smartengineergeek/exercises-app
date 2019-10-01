@@ -1,5 +1,5 @@
 // business logic
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Grid, Paper, Typography, List, ListItem, ListItemText } from 'material-ui';
 
 const shortid = require('shortid');
@@ -8,21 +8,22 @@ const styles = {
 }
 
 export default ({ 
-    exercises, 
-    category,
-    onSelect,
-    exercise: {
-        id, 
-        title='Welcome!',
-        description=' Please select an exercise from the list on the left'
-    }
+        exercises, 
+        category,
+        onSelect,
+        exercise: {
+            id, 
+            title='Welcome!',
+            description=' Please select an exercise from the list on the left'
+        }
     }) => 
     <Grid container>
         <Grid item sm>
             <Paper style={styles.Paper}>
-                {exercises.map(([group, exercises]) => 
-                    !category || category === group
-                    ? <>
+                {exercises.map(([group, exercises]) => {
+                    console.log(exercises)
+                    return (!category || category === group
+                    ? <Fragment key={group}>
                     <Typography
                         variant="headline"
                         style={{textTransform: 'captialize'}}
@@ -31,26 +32,29 @@ export default ({
                         {group}
                     </Typography>
                     <List component="ul">
-                        {exercises.map(({ title }) => 
+                        {exercises.map(({ id, title }) => {
+                            console.log(id);
+                            return(                             
                             <ListItem button onClick={() => onSelect(id)}>
                                 <ListItemText primary={title} />
-                            </ListItem>
+                            </ListItem>)
+                        }
                         )}
                     </List>
-                    </>: null
-                )}
+                    </Fragment>: null)
+                })}
             </Paper>
         </Grid>
         <Grid item sm>
             <Paper style={styles.Paper}>
                <Typography  variant="display1">
-                   {title}
+                {title}
                </Typography>
                <Typography
                 variant="subheading"
                 style={{marginTop: 20}}
                >
-                  {description}
+                {description}
                </Typography>
             </Paper>
         </Grid>

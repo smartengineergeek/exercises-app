@@ -27,6 +27,7 @@ export default class extends Component{
   }
 
   handleExerciseSelected = id => {
+    // console.log("id")
     this.setState(({ exercises }) => ({
       exercise: exercises.find(ex => ex.id === id)
     }));
@@ -35,9 +36,11 @@ export default class extends Component{
   render(){
     const exercises = this.getExercisesByMuscles(),
     { category, exercise } = this.state;
-    return<Fragment>
+    // console.log(exercises);
+    return(<Fragment>
       <Header /> 
       <Exercises 
+        exercise={exercise}
         exercises={exercises} 
         category={category}
         onSelect={this.handleExerciseSelected}  
@@ -48,7 +51,7 @@ export default class extends Component{
         onSelect={this.handleCategorySelected}  
         exercise={exercise}
       />
-    </Fragment>
+    </Fragment>)
   }
 }
 
