@@ -8,18 +8,19 @@ import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
     FormControl: {
-        width: 500
+        width: 300
     }
 })
 
 export default withStyles(styles)(class extends Component {
-    state ={
-        title: '',
-        description: '',
-        muscles: ''
-    }
+    state = this.getInitState();
     getInitState(){
-
+        const { exercise } = this.props;
+        return exercise ? exercise : {
+            title: '',
+            description: '',
+            muscles: ''
+        }
     }
     
     handleChange = name => ({ target: { value } }) => 
@@ -63,7 +64,7 @@ export default withStyles(styles)(class extends Component {
                     onChange={this.handleChange('muscles')}
                 >
                     {categories.map(category => 
-                        <MenuItem value={category}>{category}</MenuItem>                                        
+                        <MenuItem value={category}  key={category}>{category}</MenuItem>                                        
                     )}
                 </Select>
             </FormControl>

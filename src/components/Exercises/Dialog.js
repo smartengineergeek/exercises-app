@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { Button, Dialog } from 'material-ui';
 import {
-    DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle
@@ -27,7 +26,7 @@ export default class extends Component {
                 <Button variant="fab"  onClick={this.handleToggle} mini>
                     <Add />
                 </Button>
-                <Dialog open={open} onClose={this.handleToggle} >
+                <Dialog open={open} onClose={this.handleToggle}>
                     <DialogTitle id="form-dialog-title">Create a New Exercise</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
@@ -38,9 +37,6 @@ export default class extends Component {
                             muscles={muscles}
                         />
                     </DialogContent>
-                    <DialogActions>
-                      
-                    </DialogActions>
                 </Dialog>
             </Fragment>
         )

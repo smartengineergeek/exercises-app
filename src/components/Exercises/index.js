@@ -18,6 +18,7 @@ export default ({
         category,
         editMode,
         onSelect,
+        exercise,
         exercise: { 
             id, 
             title = 'Welcome!',
@@ -43,7 +44,7 @@ export default ({
                     <List component="ul">
                         {exercises.map(({ id, title }) => {
                             return(                             
-                            <ListItem button onClick={() => onSelect(id)}>
+                            <ListItem key={id} button onClick={() => onSelect(id)}>
                                 <ListItemText primary={title} />
                                 <ListItemSecondaryAction>
                                     <IconButton onClick={() => onSelectEdit(id)}>
@@ -66,6 +67,7 @@ export default ({
                 {
                     editMode ? 
                     <Form 
+                        exercise={exercise}
                         muscles={muscles} 
                         onSubmit={onEdit}
                     />:
@@ -78,7 +80,7 @@ export default ({
                         style={{marginTop: 20}}
                     >
                         {description}
-                        </Typography>                    
+                    </Typography>                    
                     </>
                 }
             </Paper>
